@@ -31,7 +31,7 @@ public class Product {
   private Double price;
 
   @Column(name = "cantidad_stock")
-  private Integer stock;
+  private Integer stockQuantity;
 
   @Column(name = "estado")
   private Boolean state;
@@ -80,12 +80,12 @@ public class Product {
     this.price = price;
   }
 
-  public Integer getStock() {
-    return stock;
+  public Integer getStockQuantity() {
+    return stockQuantity;
   }
 
-  public void setStock(Integer stock) {
-    this.stock = stock;
+  public void setStockQuantity(Integer stock) {
+    this.stockQuantity = stock;
   }
 
   public Boolean getState() {
