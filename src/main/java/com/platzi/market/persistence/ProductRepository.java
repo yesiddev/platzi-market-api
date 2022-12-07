@@ -35,7 +35,7 @@ public class ProductRepository implements ProductRepositoryDTO {
 
   @Override
   public Optional<List<ProductDTO>> getScarseProducts(int quantity) {
-    Optional<List<Product>> products = productCrudRepository.findByStockQuantityLessThanAndStatus(quantity, true);
+    Optional<List<Product>> products = productCrudRepository.findByStockQuantityLessThanAndState(quantity, true);
     return products.map(prods -> mapper.toProductsDTO(prods));
   }
 

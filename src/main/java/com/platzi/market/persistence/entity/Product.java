@@ -28,7 +28,7 @@ public class Product {
   private String barcode;
 
   @Column(name = "precio_venta")
-  private Double price;
+  private Double salePrice;
 
   @Column(name = "cantidad_stock")
   private Integer stockQuantity;
@@ -72,12 +72,12 @@ public class Product {
     this.barcode = barcode;
   }
 
-  public Double getPrice() {
-    return price;
+  public Double getSalePrice() {
+    return salePrice;
   }
 
-  public void setPrice(Double price) {
-    this.price = price;
+  public void setSalePrice(Double price) {
+    this.salePrice = price;
   }
 
   public Integer getStockQuantity() {
@@ -94,6 +94,14 @@ public class Product {
 
   public void setState(Boolean state) {
     this.state = state;
+  }
+
+  public Category getCategory() {
+    return category;
+  }
+
+  public void setCategory(Category category) {
+    this.category = category;
   }
 
 }
