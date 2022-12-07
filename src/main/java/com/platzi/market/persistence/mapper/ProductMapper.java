@@ -23,7 +23,7 @@ public interface ProductMapper {
       @Mapping(source = "category", target = "category")
   })
   ProductDTO toProductDTO(Product product);
-  List<Product> toProducts(List<ProductDTO> productsDTO);
+  List<ProductDTO> toProductsDTO(List<Product> products);
 
   @InheritInverseConfiguration
   @Mapping(target = "barcode", ignore = true)

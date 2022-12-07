@@ -17,6 +17,6 @@ public interface ProductRepositoryDTO {
 
   ProductDTO save(ProductDTO product);
 
-  ProductDTO delete(int productId);
+  void delete(int productId);
  
 }
