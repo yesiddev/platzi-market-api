@@ -51,8 +51,12 @@ public class ProductRepository implements ProductRepositoryDTO {
     return mapper.toProductDTO(productCrudRepository.save(product));
   }
 
-  public void delete(int productId) {
-    productCrudRepository.deleteById(productId);
+  @Override
+  public boolean delete(int productId) {
+    return getProduct(productId).map(product -> {
+      productCrudRepository.delete(mapper.toProduct(product));
+      return true;
+    }).orElse(false);
   }
 
 }
