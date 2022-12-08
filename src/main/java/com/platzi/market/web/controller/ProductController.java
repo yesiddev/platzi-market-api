@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,17 +27,17 @@ public class ProductController {
   }
 
   @GetMapping("/category/{id}")
-  public Optional<List<ProductDTO>> getByCategory(int categoryId) {
+  public Optional<List<ProductDTO>> getByCategory(@PathVariable("id") int categoryId) {
     return productService.getByCategory(categoryId);
   }
 
   @GetMapping("/scarse/{quantity}")
-  public Optional<List<ProductDTO>> getScarseProducts(int quantity) {
+  public Optional<List<ProductDTO>> getScarseProducts(@PathVariable("quantity") int quantity) {
     return productService.getScarseProducts(quantity);
   }
 
   @GetMapping("/{id}")
-  public Optional<ProductDTO> getProduct(int productId) {
+  public Optional<ProductDTO> getProduct(@PathVariable("id") int productId) {
     return productService.getProduct(productId);
   }
 
@@ -46,7 +47,7 @@ public class ProductController {
   }
 
   @DeleteMapping("/delete/{id}")
-  public boolean delete(int productId) {
+  public boolean delete(@PathVariable("id") int productId) {
     return productService.delete(productId);
   }
 
