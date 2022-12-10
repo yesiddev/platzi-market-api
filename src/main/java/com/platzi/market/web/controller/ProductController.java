@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.platzi.market.domain.dto.ProductDTO;
 import com.platzi.market.domain.service.ProductService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -24,18 +27,22 @@ public class ProductController {
   private ProductService productService;
 
   @GetMapping("/all")
+  @ApiOperation("Get all supermarket products")
   public ResponseEntity<List<ProductDTO>> getAll() {
     return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<ProductDTO> getProduct(@PathVariable("id") int productId) {
+  @ApiOperation("Search a product with an ID")
+  public ResponseEntity<ProductDTO> getProduct(
+      @ApiParam(value = "The Product's Id", required = true, example = "7") @PathVariable("id") int productId) {
     return productService.getProduct(productId)
         .map(product -> new ResponseEntity<>(product, HttpStatus.OK))
         .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
   }
 
   @GetMapping("/category/{id}")
+  @ApiOperation("Get products by category")
   public ResponseEntity<List<ProductDTO>> getByCategory(@PathVariable("id") int categoryId) {
     return productService.getByCategory(categoryId)
         .map(products -> new ResponseEntity<>(products, HttpStatus.OK))
@@ -43,11 +50,13 @@ public class ProductController {
   }
 
   @PostMapping("/save")
+  @ApiOperation("Save a new product")
   public ResponseEntity<ProductDTO> save(@RequestBody ProductDTO product) {
     return new ResponseEntity<>(productService.save(product), HttpStatus.CREATED);
   }
 
   @DeleteMapping("/delete/{id}")
+  @ApiOperation("Delete a product")
   public ResponseEntity<Boolean> delete(@PathVariable("id") int productId) {
 
     if (productService.delete(productId)) {
